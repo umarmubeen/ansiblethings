@@ -2,18 +2,16 @@
 
 - hosts: all
   gather_facts: yes
-  remote_user: root
-  sudo: yes
   vars_files:
     - linuxvolume.yml
   tasks:
     - name: List all Partitions
-      shell: parted -l
+      shell: sudo parted -l
       register: all_partition
     - debug: msg="{{all_partition}}"
 
     - name: fetch total volume size of server
-      shell: parted -l | head -2 |sed '1d' | cut -d ":" -f2
+      shell: sudo parted -l | head -2 |sed '1d' | cut -d ":" -f2
       register: volume_size
     - debug: msg="{{volume_size.stdout}}"
    
