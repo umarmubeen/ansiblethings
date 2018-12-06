@@ -4,7 +4,7 @@
   vars_files:
     - winvars.yml
   tasks:
-     - name: Create Directory
+    - name: Create Directory
       win_file:
          path: "{{dest_path}}"
          state: directory
