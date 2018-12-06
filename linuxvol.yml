@@ -19,6 +19,8 @@
       set_fact:
         servervolume: "{{volume_size.stdout}}"
         requiredvolume: "{{total_volume_size}}"
+    
+    - debug: msg="{{requiredvolume}}"
 
     - name: Results
       debug: 
