@@ -11,7 +11,7 @@
     - debug: msg="{{all_partition}}"
 
     - name: fetch total volume size of server
-      shell: fdisk -l | head -2 |sed '1d' | cut -d ":" -f2
+      shell: fdisk -l | grep /dev/xvda | head -1 | cut -d ":" -f2 | cut -d "," -f1
       register: volume_size
     - debug: msg="{{volume_size.stdout}}"
    
