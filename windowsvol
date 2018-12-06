@@ -1,0 +1,41 @@
+---
+
+- hosts: all
+  vars_files:
+    - winvars.yml
+  tasks:
+     - name: Create Directory
+      win_file:
+         path: "{{dest_path}}"
+         state: directory
+      tags:
+        - directory_created
+      
+
+    - name: Copying Powershell Script
+      win_copy:
+          src: "{{src_path}}"
+          dest: "{{dest_path}}"
+      tags:
+         - file_copied
+   
+    - name: Running Powershell Script
+      win_shell: "{{command}}"
+      register: volume_size
+      tags:
+         - powershell_script_execution
+
+    - name: Setting facts
+      set_fact:
+        servervolume: "{{volume_size.stdout|trim}}"
+        requiredvolume: "{{total_volume_size}}"
+
+    - name: Results
+      debug: 
+         msg: "criteria matched"
+      when: servervolume >= requiredvolume
+
+    - name: Results
+      debug: 
+         msg: "criteria not matched"
+      when: servervolume < requiredvolume
