@@ -1,4 +1,4 @@
 ---
 # vars file for LinuxPartition
-total_volume_size: 40GB
+total_volume_size: 40 GiB
 
