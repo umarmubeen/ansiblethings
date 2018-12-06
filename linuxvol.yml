@@ -19,8 +19,6 @@
       set_fact:
         servervolume: "{{volume_size.stdout}}"
         requiredvolume: "{{total_volume_size}}"
-        critera_matched: "{{criteria_match}}"
-        criteria_not_matched: "{{criteria_not_match}}"
 
     - name: Results
       debug: 
