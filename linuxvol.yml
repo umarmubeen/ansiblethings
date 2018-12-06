@@ -20,7 +20,7 @@
         servervolume: "{{volume_size.stdout}}"
         requiredvolume: "{{total_volume_size}}"
     
-    - debug: msg="{{requiredvolume}}"
+    - debug: msg= required volume shoulb is : "{{requiredvolume}}"
 
     - name: Results
       debug: 
