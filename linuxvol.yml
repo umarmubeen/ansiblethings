@@ -6,12 +6,12 @@
     - linuxvolume.yml
   tasks:
     - name: List all Partitions
-      shell: sudo parted -l
+      shell: parted -l
       register: all_partition
     - debug: msg="{{all_partition}}"
 
     - name: fetch total volume size of server
-      shell: sudo parted -l | head -2 |sed '1d' | cut -d ":" -f2
+      shell: parted -l | head -2 |sed '1d' | cut -d ":" -f2
       register: volume_size
     - debug: msg="{{volume_size.stdout}}"
    
