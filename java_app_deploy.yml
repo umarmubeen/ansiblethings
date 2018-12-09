@@ -1,0 +1,16 @@
+---
+- hosts: all
+  vars:
+  - tomcatWebAppsPath: /usr/share/tomcat/webapps/
+
+  tasks:
+  - name: Download WAR to server
+    get_url:
+      url: https://s3.amazonaws.com/datica-java-war-deploy-demo/simple-war-0.1.war
+      dest: "{{tomcatWebAppsPath}}"
+      notify:
+        - restart tomcat
+
+  handlers:
+    - name: restart tomcat
+      service: name=tomcat state=restarted
