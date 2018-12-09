@@ -8,8 +8,8 @@
     get_url:
       url: https://s3.amazonaws.com/datica-java-war-deploy-demo/simple-war-0.1.war
       dest: "{{tomcatWebAppsPath}}"
-      notify:
-        - restart tomcat
+    notify:
+      - restart tomcat
 
   handlers:
     - name: restart tomcat
